@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/menuViewActivityLog" android:orderInCategory="101" android:title="View Activity Log"></item>
+    <item android:id="@+id/menuCheckNow" android:orderInCategory="102" android:title="Check For Updates"></item>
+
+</menu >

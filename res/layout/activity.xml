@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="@android:color/black">
+	
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.00"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:text="@string/header"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/gold"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ip"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/IPaddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:radius="5dp" 
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@color/transparent_white_percent_40"
+        android:inputType="textMultiLine|textNoSuggestions" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/port"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/outPort"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:radius="5dp" 
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@color/transparent_white_percent_40"
+        android:inputType="textMultiLine|textNoSuggestions" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/set_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/black"
+        android:text="@string/set"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/oceus" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="137dp"
+        android:cacheColorHint="#00000000"
+        android:divider="#00000000"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="1dp" />
+</LinearLayout>
+
+</RelativeLayout>
