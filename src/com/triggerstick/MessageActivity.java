@@ -63,6 +63,49 @@ public class MessageActivity extends Activity {
 				// mConversationArrayAdapter.add("Me:  " + s2);
 			} else if (m.what == MESSAGE_READ) {
 				// There will not be any reads taking place from the BT serial adapter yet
+                int expectedLength = 18;     // If you're expecting your message to be a certain length
+				try {
+                    // Cast the object we just read into a byte array
+					byte abyte0[] = (byte[]) m.obj;
+					if (m.arg1 != expectedLength) {
+                        // If we read in something that's not the expected length,
+						if (prevObj != null && m.arg1 + prevArg1 != expectedLength) {
+                            // This is when the previous message is defined, and even after reading this one, the length is wrong
+                            // This is the error condition; tag read failed
+							Toast.makeText(ctx, "Read TAG Failed - Length Incorrect", 0).show();
+							mapView.loadUrl("javascript:placeMarker('" + AppData._tx.lat + "', '" + AppData._tx.lng + "', 'red')");
+							prevObj = null;
+							return;
+						} else if (prevObj == null) {
+                            // This is when the previous message isn't defined, and the length of this message is wrong
+                            // Thus the next message we read needs to be added to this one
+							prevObj = (byte[]) m.obj;
+							prevArg1 = m.arg1;
+							return;
+						} else if (prevObj != null && m.arg1 + prevArg1 == expectedLength) {
+                            // This is when the previous message is defined, and this message added to the previous one is the right length
+                            // After this, the message will be converted to a String
+							abyte0 = new byte[expectedLength];
+							System.arraycopy((byte[]) prevObj, 0, abyte0, 0, prevArg1);
+							System.arraycopy((byte[]) m.obj, 0, abyte0, prevArg1, m.arg1);
+						}
+					}
+					prevObj = null;   // Null the prevObj so we're ready for the next bit of data in case it's too short
+                    /*
+                     * TODO: This is where you should convert your byte array into a String object (s1)
+                     */
+                    AppData._tx.uid = s1;					
+					Log.d("MyApp", "+++ ON READ +++");
+					Log.d("MyApp",  s + ":" + expectedLength);
+					Log.d("MyApp", s1);
+					// Toast.makeText(ctx, "Read TAG OK", Toast.LENGTH_SHORT).show();
+				} catch (Exception e) {
+					Log.d("MyApp", "####ERROR####");
+					Log.d("MyApp", e.getMessage().toString());
+					Toast.makeText(ctx, "Read TAG Failed: " + e.getMessage().toString(), 1).show();
+				}
+                
+                
 			} else if (m.what == MESSAGE_DEVICE_NAME) {
 				mConnectedDeviceName = m.getData().getString("device_name");
 			} else if (m.what == MESSAGE_TOAST) {
